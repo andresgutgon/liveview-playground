@@ -9,10 +9,9 @@
 <.button phx-click="confirm_modal">Confirm</.button>
 Open: <%= @modal_open %>
 
-<.live_component
+<PlaygroundWeb.UI.Modal.render
   :if={@modal_open}
   show
-  module={PlaygroundWeb.UI.Modal}
   id="confirm"
   on_cancel={JS.push("close_modal")}
 >
@@ -20,4 +19,4 @@ Open: <%= @modal_open %>
   <.button phx-click="close_modal">
     Close Modal
   </.button>
-</.live_component>
+</PlaygroundWeb.UI.Modal.render>
