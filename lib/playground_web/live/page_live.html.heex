@@ -9,7 +9,7 @@
 <.button phx-click="confirm_modal">Confirm</.button>
 Open: <%= @modal_open %>
 
-<PlaygroundWeb.UI.Modal.render
+<PlaygroundWeb.UI.Modal.modal
   :if={@modal_open}
   show
   id="confirm"
@@ -19,4 +19,4 @@ Open: <%= @modal_open %>
   <.button phx-click="close_modal">
     Close Modal
   </.button>
-</PlaygroundWeb.UI.Modal.render>
+</PlaygroundWeb.UI.Modal.modal>

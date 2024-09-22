@@ -1,5 +1,6 @@
 defmodule PlaygroundWeb.UserLive.Index do
   use PlaygroundWeb, :live_view
+  use PlaygroundWeb.UI.Helpers.JSHelpers, {:show, :hide}
 
   alias Playground.Users
   alias Playground.Users.User

@@ -30,7 +30,12 @@
   </:action>
 </.table>
 
-<.modal :if={@live_action in [:new, :edit]} id="user-modal" show on_cancel={JS.patch(~p"/users")}>
+<PlaygroundWeb.UI.Modal.modal
+  :if={@live_action in [:new, :edit]}
+  id="user-modal"
+  show
+  on_cancel={JS.patch(~p"/users")}
+>
   <.live_component
     module={PlaygroundWeb.UserLive.FormComponent}
     id={@user.id || :new}
@@ -39,4 +44,4 @@
     user={@user}
     patch={~p"/users"}
   />
-</.modal>
+</PlaygroundWeb.UI.Modal.modal>

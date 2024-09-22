@@ -1,6 +1,7 @@
 defmodule PlaygroundWeb.UI.Modal do
   use Gettext, backend: PlaygroundWeb.Gettext
   use PlaygroundWeb, :live_component
+  use PlaygroundWeb.UI.Helpers.JSHelpers, {:show, :hide}
   alias Phoenix.LiveView.JS
 
   import PlaygroundWeb.CoreComponents, only: [icon: 1]
@@ -13,7 +14,7 @@ defmodule PlaygroundWeb.UI.Modal do
   attr :on_cancel, JS, default: %JS{}
   slot :inner_block, required: true
 
-  def render(assigns) do
+  def modal(assigns) do
     # Do a log to show in the logs
     ~H"""
     <div
@@ -97,29 +98,5 @@ defmodule PlaygroundWeb.UI.Modal do
     |> JS.hide(to: "##{id}", transition: {"block", "block", "hidden"})
     |> JS.remove_class("overflow-hidden", to: "body")
     |> JS.pop_focus()
-  end
-
-  def show(js \\ %JS{}, selector) do
-    IO.inspect("Selector: #{selector}")
-
-    JS.show(js,
-      to: selector,
-      time: 300,
-      transition:
-        {"transition-all transform ease-out duration-300",
-         "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95",
-         "opacity-100 translate-y-0 sm:scale-100"}
-    )
-  end
-
-  def hide(js \\ %JS{}, selector) do
-    JS.hide(js,
-      to: selector,
-      time: 200,
-      transition:
-        {"transition-all transform ease-in duration-200",
-         "opacity-100 translate-y-0 sm:scale-100",
-         "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"}
-    )
   end
 end

@@ -15,7 +15,12 @@
 
 <.back navigate={~p"/users"}>Back to users</.back>
 
-<.modal :if={@live_action == :edit} id="user-modal" show on_cancel={JS.patch(~p"/users/#{@user}")}>
+<PlaygroundWeb.UI.Modal.modal
+  :if={@live_action == :edit}
+  id="user-modal"
+  show
+  on_cancel={JS.patch(~p"/users/#{@user}")}
+>
   <.live_component
     module={PlaygroundWeb.UserLive.FormComponent}
     id={@user.id}
@@ -24,4 +29,4 @@
     user={@user}
     patch={~p"/users/#{@user}"}
   />
-</.modal>
+</PlaygroundWeb.UI.Modal.modal>
