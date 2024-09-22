@@ -5,8 +5,6 @@ defmodule PlaygroundWeb.UI.Helpers.JSHelpers do
   Helper functions for JavaScript.
   """
   def show(js \\ %JS{}, selector) do
-    IO.inspect("Selector: #{selector}")
-
     JS.show(js,
       to: selector,
       time: 300,
