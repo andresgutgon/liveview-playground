@@ -1,5 +1,6 @@
 defmodule PlaygroundWeb.PageLive do
   use PlaygroundWeb, :live_view
+  import UI.Alert
 
   def mount(_params, _session, socket) do
     {:ok,

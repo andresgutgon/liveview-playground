@@ -58,7 +58,8 @@ config :playground, PlaygroundWeb.Endpoint,
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/playground_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"lib/playground_web/(controllers|live|components)/.*(ex|heex)$",
+      ~r"lib/ui/.*(ex|heex)$"
     ]
   ]
 
