@@ -43,7 +43,10 @@ defmodule Playground.UsersTest do
 
     test "update_user/2 with invalid data returns error changeset" do
       user = user_fixture()
-      assert {:error, %Ecto.Changeset{}} = Users.update_user(user, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Users.update_user(user, @invalid_attrs)
+
       assert user == Users.get_user!(user.id)
     end
 

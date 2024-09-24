@@ -21,9 +21,11 @@ config :playground, PlaygroundWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "AU6rwrnOVvuW3hdZezRPOeQ3PDDOzsfbaCNhdeg3YfxETWEFsxg5fkfrksA5O34x",
+  secret_key_base:
+    "AU6rwrnOVvuW3hdZezRPOeQ3PDDOzsfbaCNhdeg3YfxETWEFsxg5fkfrksA5O34x",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:playground, ~w(--sourcemap=inline --watch)]},
+    esbuild:
+      {Esbuild, :install_and_run, [:playground, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:playground, ~w(--watch)]}
   ]
 

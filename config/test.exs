@@ -17,7 +17,8 @@ config :playground, Playground.Repo,
 # you can enable the server option below.
 config :playground, PlaygroundWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "7Kdqz8rqpT0xVbbX5ta8D7ui89Ebu1mnet6TrwLw64X25N9bd1QhCIBefZFpHmtf",
+  secret_key_base:
+    "7Kdqz8rqpT0xVbbX5ta8D7ui89Ebu1mnet6TrwLw64X25N9bd1QhCIBefZFpHmtf",
   server: false
 
 # In test we don't send emails

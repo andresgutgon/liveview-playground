@@ -67,8 +67,6 @@ defmodule PlaygroundWeb.UI.Modal do
     """
   end
 
-  ## JS Commands
-
   def show_modal(js \\ %JS{}, id) when is_binary(id) do
     js
     |> JS.show(to: "##{id}")

@@ -9,7 +9,9 @@ defmodule PlaygroundWeb.UserLive.FormComponent do
     <div>
       <.header>
         <%= @title %>
-        <:subtitle>Use this form to manage user records in your database.</:subtitle>
+        <:subtitle>
+          Use this form to manage user records in your database.
+        </:subtitle>
       </.header>
 
       <.simple_form

@@ -49,7 +49,9 @@ defmodule PlaygroundWeb.UserLiveTest do
     test "updates user in listing", %{conn: conn, user: user} do
       {:ok, index_live, _html} = live(conn, ~p"/users")
 
-      assert index_live |> element("#users-#{user.id} a", "Edit") |> render_click() =~
+      assert index_live
+             |> element("#users-#{user.id} a", "Edit")
+             |> render_click() =~
                "Edit User"
 
       assert_patch(index_live, ~p"/users/#{user}/edit")
@@ -72,7 +74,10 @@ defmodule PlaygroundWeb.UserLiveTest do
     test "deletes user in listing", %{conn: conn, user: user} do
       {:ok, index_live, _html} = live(conn, ~p"/users")
 
-      assert index_live |> element("#users-#{user.id} a", "Delete") |> render_click()
+      assert index_live
+             |> element("#users-#{user.id} a", "Delete")
+             |> render_click()
+
       refute has_element?(index_live, "#users-#{user.id}")
     end
   end

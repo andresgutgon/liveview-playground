@@ -34,7 +34,10 @@ defmodule PlaygroundWeb.UserLive.Index do
   end
 
   @impl true
-  def handle_info({PlaygroundWeb.UserLive.FormComponent, {:saved, user}}, socket) do
+  def handle_info(
+        {PlaygroundWeb.UserLive.FormComponent, {:saved, user}},
+        socket
+      ) do
     {:noreply, stream_insert(socket, :users, user)}
   end
 
