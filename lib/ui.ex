@@ -21,8 +21,9 @@ defmodule UI do
 
   defmacro __using__(_) do
     quote do
-      import UI.Alert
-      import UI.Icon
+      import UI.Atoms.Alert
+      import UI.Atoms.Icon
+      import UI.Atoms.Text
     end
   end
 end

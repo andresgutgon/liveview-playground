@@ -1,10 +1,11 @@
 defmodule CoffeeWeb.Auth.UserLoginLive do
   use CoffeeWeb, :live_view
+  import UI.Molecules.Header, only: [ui_header: 1]
 
   def render(assigns) do
     ~H"""
     <div class="mx-auto max-w-sm">
-      <.header class="text-center">
+      <.ui_header>
         Log in to account
         <:subtitle>
           Don't have an account?
@@ -13,7 +14,7 @@ defmodule CoffeeWeb.Auth.UserLoginLive do
           </.link>
           for an account now.
         </:subtitle>
-      </.header>
+      </.ui_header>
 
       <.simple_form for={@form} id="login_form" action={~p"/auth/users/log_in"} phx-update="ignore">
         <.input field={@form[:email]} type="email" label="Email" required />
