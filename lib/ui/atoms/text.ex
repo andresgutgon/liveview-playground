@@ -11,6 +11,7 @@ defmodule UI.Atoms.Text do
       </UI.Text.text>
   """
 
+  attr :tag, :string, default: "span"
   attr :size, :string, default: "h4", values: ~w(h1 h2 h3 h4 h5 h6)
   attr :color, :string, default: "foreground"
   attr :dark_color, :string, default: nil
@@ -28,47 +29,46 @@ defmodule UI.Atoms.Text do
   attr :no_wrap, :boolean, default: false
   attr :underline, :boolean, default: false
   attr :line_through, :boolean, default: false
-  attr :as_child, :boolean, default: false
   attr :monospace, :boolean, default: false
   attr :centered, :boolean, default: false
   attr :animate, :boolean, default: false
   slot :inner_block, required: true
   attr :rest, :global, default: %{}
 
-  def text(assigns) do
-    css_classes =
-      classes([
-        assigns[:size],
-        assigns[:weight],
-        assigns[:spacing],
-        if(assigns[:theme] == "dark",
-          do: assigns[:dark_color],
-          else: assigns[:color]
-        ),
-        assigns[:word_break],
-        assigns[:white_space],
-        assigns[:align],
-        assigns[:display],
-        if(assigns[:animate], do: "animate-text-gradient", else: ""),
-        if(assigns[:capitalize], do: "capitalize", else: ""),
-        if(assigns[:uppercase], do: "uppercase", else: ""),
-        if(assigns[:ellipsis], do: "truncate", else: ""),
-        if(assigns[:user_select], do: "select-none", else: ""),
-        if(assigns[:no_wrap], do: "whitespace-nowrap", else: ""),
-        if(assigns[:underline], do: "underline", else: ""),
-        if(assigns[:line_through], do: "line-through", else: ""),
-        if(assigns[:monospace], do: "font-mono", else: "font-sans"),
-        if(assigns[:centered], do: "text-center", else: "")
-      ])
+  def ui_text(assigns) do
+    assigns =
+      assign(
+        assigns,
+        :css_classes,
+        classes([
+          assigns[:size],
+          assigns[:weight],
+          assigns[:spacing],
+          if(assigns[:theme] == "dark",
+            do: assigns[:dark_color],
+            else: assigns[:color]
+          ),
+          assigns[:word_break],
+          assigns[:white_space],
+          assigns[:align],
+          assigns[:display],
+          if(assigns[:animate], do: "animate-text-gradient", else: ""),
+          if(assigns[:capitalize], do: "capitalize", else: ""),
+          if(assigns[:uppercase], do: "uppercase", else: ""),
+          if(assigns[:ellipsis], do: "truncate", else: ""),
+          if(assigns[:user_select], do: "select-none", else: ""),
+          if(assigns[:no_wrap], do: "whitespace-nowrap", else: ""),
+          if(assigns[:underline], do: "underline", else: ""),
+          if(assigns[:line_through], do: "line-through", else: ""),
+          if(assigns[:monospace], do: "font-mono", else: "font-sans"),
+          if(assigns[:centered], do: "text-center", else: "")
+        ])
+      )
 
     ~H"""
-    <%= if @as_child do %>
-      <%= render_slot(@inner_block, Keyword.merge(@rest, class: css_classes)) %>
-    <% else %>
-      <span class={css_classes} {@rest}>
-        <%= render_slot(@inner_block) %>
-      </span>
-    <% end %>
+    <.dynamic_tag name={@tag} class={@css_classes} {@rest}>
+      <%= render_slot(@inner_block) %>
+    </.dynamic_tag>
     """
   end
 end

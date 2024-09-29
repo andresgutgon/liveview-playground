@@ -1,5 +1,6 @@
 defmodule UI.Molecules.Header do
   use UI, :component
+  import UI.Atoms.Text, only: [ui_text: 1]
 
   attr :class, :string, default: nil
   slot :inner_block, required: true
@@ -13,12 +14,10 @@ defmodule UI.Molecules.Header do
       @class
     ]}>
       <div>
-        <h1 class="text-lg font-semibold leading-8 text-zinc-800">
-          <%= render_slot(@inner_block) %> HOLI
-        </h1>
-        <p :if={@subtitle != []} class="mt-2 text-sm leading-6 text-zinc-600">
+        <.ui_text size="h1" tag="h1"><%= render_slot(@inner_block) %></.ui_text>
+        <.ui_text :if={@subtitle != []} size="h5" tag="p">
           <%= render_slot(@subtitle) %>
-        </p>
+        </.ui_text>
       </div>
       <div class="flex-none"><%= render_slot(@actions) %></div>
     </header>
