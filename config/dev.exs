@@ -63,7 +63,6 @@ config :coffee, CoffeeWeb.Endpoint,
     ]
   ]
 
-# Enable dev routes for dashboard and mailbox
 config :coffee, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
