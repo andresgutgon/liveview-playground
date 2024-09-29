@@ -1,4 +1,4 @@
-# Playground
+# Coffee
 
 To start your Phoenix server:
 

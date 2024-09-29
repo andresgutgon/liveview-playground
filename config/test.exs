@@ -5,24 +5,24 @@ import Config
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
-config :playground, Playground.Repo,
-  username: "postgres",
-  password: "postgres",
+config :coffee, Coffee.Repo,
+  username: "coffee",
+  password: "secret",
   hostname: "localhost",
-  database: "playground_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "coffee_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: System.schedulers_online() * 2
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :playground, PlaygroundWeb.Endpoint,
+config :coffee, CoffeeWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base:
     "7Kdqz8rqpT0xVbbX5ta8D7ui89Ebu1mnet6TrwLw64X25N9bd1QhCIBefZFpHmtf",
   server: false
 
 # In test we don't send emails
-config :playground, Playground.Mailer, adapter: Swoosh.Adapters.Test
+config :coffee, Coffee.Mailer, adapter: Swoosh.Adapters.Test
 
 # Disable swoosh api client as it is only required for production adapters
 config :swoosh, :api_client, false

@@ -8,8 +8,8 @@ const path = require("path");
 module.exports = {
   content: [
     "./js/**/*.js",
-    "../lib/playground_web.ex",
-    "../lib/playground_web/**/*.*ex",
+    "../lib/coffee_web.ex",
+    "../lib/coffee_web/**/*.*ex",
     "../lib/ui.ex",
     "../lib/ui/**/*.*ex",
   ],

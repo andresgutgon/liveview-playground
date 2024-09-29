@@ -7,19 +7,19 @@
 # General application configuration
 import Config
 
-config :playground,
-  ecto_repos: [Playground.Repo],
+config :coffee,
+  ecto_repos: [Coffee.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
-config :playground, PlaygroundWeb.Endpoint,
+config :coffee, CoffeeWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: PlaygroundWeb.ErrorHTML, json: PlaygroundWeb.ErrorJSON],
+    formats: [html: CoffeeWeb.ErrorHTML, json: CoffeeWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: Playground.PubSub,
+  pubsub_server: Coffee.PubSub,
   live_view: [signing_salt: "uBJ9zPTM"]
 
 # Configures the mailer
@@ -29,22 +29,21 @@ config :playground, PlaygroundWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :playground, Playground.Mailer, adapter: Swoosh.Adapters.Local
+config :coffee, Coffee.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",
-  playground: [
+  coffee: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 
-# Configure tailwind (the version is required)
 config :tailwind,
   version: "3.4.3",
-  playground: [
+  coffee: [
     args: ~w(
       --config=tailwind.config.js
       --input=css/app.css

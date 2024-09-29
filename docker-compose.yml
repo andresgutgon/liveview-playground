@@ -14,7 +14,7 @@ services:
   db:
     image: postgres:latest
     environment:
-      - 'POSTGRES_USER=liveviewpg'
+      - 'POSTGRES_USER=coffee'
       - 'POSTGRES_PASSWORD=secret'
     volumes:
       - ./docker/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
