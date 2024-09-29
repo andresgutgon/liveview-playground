@@ -3,6 +3,9 @@ defmodule PlaygroundWeb.CoreComponents do
   use PlaygroundWeb.UI.Helpers.JSHelpers, {:show, :hide}
 
   @moduledoc """
+
+  FIXME: Remove all of this and move to UI module
+
   Provides core UI components.
 
   At first glance, this module may seem daunting, but its goal is to provide
