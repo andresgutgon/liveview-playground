@@ -1,11 +1,11 @@
 import Config
 
 # Configure your database
-config :playground, Playground.Repo,
-  username: "liveviewpg",
+config :coffee, Coffee.Repo,
+  username: "coffee",
   password: "secret",
   hostname: "db",
-  database: "liveviewpg_dev",
+  database: "coffee_development",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -16,7 +16,7 @@ config :playground, Playground.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we can use it
 # to bundle .js and .css sources.
-config :playground, PlaygroundWeb.Endpoint,
+config :coffee, CoffeeWeb.Endpoint,
   http: [ip: {0, 0, 0, 0}, port: 4004],
   check_origin: false,
   code_reloader: true,
@@ -25,8 +25,8 @@ config :playground, PlaygroundWeb.Endpoint,
     "AU6rwrnOVvuW3hdZezRPOeQ3PDDOzsfbaCNhdeg3YfxETWEFsxg5fkfrksA5O34x",
   watchers: [
     esbuild:
-      {Esbuild, :install_and_run, [:playground, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:playground, ~w(--watch)]}
+      {Esbuild, :install_and_run, [:coffee, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:coffee, ~w(--watch)]}
   ]
 
 # ## SSL Support
@@ -53,18 +53,18 @@ config :playground, PlaygroundWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :playground, PlaygroundWeb.Endpoint,
+config :coffee, CoffeeWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/playground_web/(controllers|live|components)/.*(ex|heex)$",
+      ~r"lib/coffee_web/(controllers|live|components)/.*(ex|heex)$",
       ~r"lib/ui/.*(ex|heex)$"
     ]
   ]
 
 # Enable dev routes for dashboard and mailbox
-config :playground, dev_routes: true
+config :coffee, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

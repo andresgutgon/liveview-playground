@@ -1,9 +1,9 @@
-defmodule Playground.MixProject do
+defmodule Coffee.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :playground,
+      app: :coffee,
       version: "0.1.0",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -18,7 +18,7 @@ defmodule Playground.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Playground.Application, []},
+      mod: {Coffee.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -80,10 +80,10 @@ defmodule Playground.MixProject do
         "tailwind.install --if-missing",
         "esbuild.install --if-missing"
       ],
-      "assets.build": ["tailwind playground", "esbuild playground"],
+      "assets.build": ["tailwind coffee", "esbuild coffee"],
       "assets.deploy": [
-        "tailwind playground --minify",
-        "esbuild playground --minify",
+        "tailwind coffee --minify",
+        "esbuild coffee --minify",
         "phx.digest"
       ]
     ]

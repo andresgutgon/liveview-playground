@@ -1,4 +1,4 @@
-defmodule Playground.DataCase do
+defmodule Coffee.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule Playground.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use Playground.DataCase, async: true`, although
+  by setting `use Coffee.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -18,17 +18,17 @@ defmodule Playground.DataCase do
 
   using do
     quote do
-      alias Playground.Repo
+      alias Coffee.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Playground.DataCase
+      import Coffee.DataCase
     end
   end
 
   setup tags do
-    Playground.DataCase.setup_sandbox(tags)
+    Coffee.DataCase.setup_sandbox(tags)
     :ok
   end
 
@@ -37,7 +37,7 @@ defmodule Playground.DataCase do
   """
   def setup_sandbox(tags) do
     pid =
-      Ecto.Adapters.SQL.Sandbox.start_owner!(Playground.Repo,
+      Ecto.Adapters.SQL.Sandbox.start_owner!(Coffee.Repo,
         shared: not tags[:async]
       )
 
