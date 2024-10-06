@@ -22,7 +22,7 @@ defmodule CoffeeWeb.Auth.UserConfirmationInstructionsLive do
 
       <p class="text-center mt-4">
         <.link href={~p"/auth/users/register"}>Register</.link>
-        | <.link href={~p"/auth/users/log_in"}>Log in</.link>
+        | <.link href={~p"/auth/users/login"}>Log in</.link>
       </p>
     </div>
     """

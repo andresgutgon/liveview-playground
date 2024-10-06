@@ -21,7 +21,7 @@ defmodule CoffeeWeb.Auth.UserForgotPasswordLive do
       </.simple_form>
       <p class="text-center text-sm mt-4">
         <.link href={~p"/auth/users/register"}>Register</.link>
-        | <.link href={~p"/auth/users/log_in"}>Log in</.link>
+        | <.link href={~p"/auth/users/login"}>Log in</.link>
       </p>
     </div>
     """

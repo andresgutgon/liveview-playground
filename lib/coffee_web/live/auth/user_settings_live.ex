@@ -37,7 +37,7 @@ defmodule CoffeeWeb.Auth.UserSettingsLive do
         <.simple_form
           for={@password_form}
           id="password_form"
-          action={~p"/auth/users/log_in?_action=password_updated"}
+          action={~p"/auth/users/login?_action=password_updated"}
           method="post"
           phx-change="validate_password"
           phx-submit="update_password"

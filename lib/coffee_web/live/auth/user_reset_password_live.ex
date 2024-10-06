@@ -32,7 +32,7 @@ defmodule CoffeeWeb.Auth.UserResetPasswordLive do
 
       <p class="text-center text-sm mt-4">
         <.link href={~p"/auth/users/register"}>Register</.link>
-        | <.link href={~p"/auth/users/log_in"}>Log in</.link>
+        | <.link href={~p"/auth/users/login"}>Log in</.link>
       </p>
     </div>
     """
@@ -61,7 +61,7 @@ defmodule CoffeeWeb.Auth.UserResetPasswordLive do
         {:noreply,
          socket
          |> put_flash(:info, "Password reset successfully.")
-         |> redirect(to: ~p"/auth/users/log_in")}
+         |> redirect(to: ~p"/auth/users/login")}
 
       {:error, changeset} ->
         {:noreply, assign_form(socket, Map.put(changeset, :action, :insert))}

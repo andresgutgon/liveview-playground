@@ -11,7 +11,7 @@ defmodule CoffeeWeb.Auth.UserRegistrationLive do
         Register for an account
         <:subtitle>
           Already registered?
-          <.link navigate={~p"/auth/users/log_in"} class="font-semibold text-brand hover:underline">
+          <.link navigate={~p"/auth/users/login"} class="font-semibold text-brand hover:underline">
             Log in
           </.link>
           to your account now.
@@ -24,7 +24,7 @@ defmodule CoffeeWeb.Auth.UserRegistrationLive do
         phx-submit="save"
         phx-change="validate"
         phx-trigger-action={@trigger_submit}
-        action={~p"/auth/users/log_in?_action=registered"}
+        action={~p"/auth/users/login?_action=registered"}
         method="post"
       >
         <.error :if={@check_errors}>
