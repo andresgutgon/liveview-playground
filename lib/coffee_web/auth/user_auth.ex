@@ -157,7 +157,10 @@ defmodule CoffeeWeb.Auth.UserAuth do
     else
       socket =
         socket
-        |> Phoenix.LiveView.put_flash(:error, "You must log in to access this page.")
+        |> Phoenix.LiveView.put_flash(
+          :error,
+          "You must log in to access this page."
+        )
         |> Phoenix.LiveView.redirect(to: ~p"/auth/users/login")
 
       {:halt, socket}
@@ -216,7 +219,10 @@ defmodule CoffeeWeb.Auth.UserAuth do
   defp put_token_in_session(conn, token) do
     conn
     |> put_session(:user_token, token)
-    |> put_session(:live_socket_id, "users_sessions:#{Base.url_encode64(token)}")
+    |> put_session(
+      :live_socket_id,
+      "users_sessions:#{Base.url_encode64(token)}"
+    )
   end
 
   defp maybe_store_return_to(%{method: "GET"} = conn) do

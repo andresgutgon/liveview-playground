@@ -7,7 +7,8 @@ defmodule UI.Tokens.Display do
       block: "block",
       inline: "inline",
       inline_block: "inline-block"
-    } end
+    }
+  end
 
   @spec display(String.t()) :: String.t()
   def display(key) when is_binary(key) do

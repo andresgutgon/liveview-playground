@@ -11,50 +11,59 @@ defmodule UI.Tokens.Font do
   def font_properties do
     %{
       size: %{
-        h8: "text-[8px] leading-[10px]", # 8px/10px
-        h7: "text-[10px] leading-4", # 10px/16px
-        h6: "text-xs leading-4", # 12px/16px
-        h5: "text-sm leading-5", # 14px/20px
-        h4: "text-normal leading-6", # 16px/24px
-        h3: "text-xl leading-8", # 20px/32px
-        h2: "text-h2 leading-10", # 26px/40px
-        h1: "text-4xl leading-h1", # 36px/48px
+        # 8px/10px
+        h8: "text-[8px] leading-[10px]",
+        # 10px/16px
+        h7: "text-[10px] leading-4",
+        # 12px/16px
+        h6: "text-xs leading-4",
+        # 14px/20px
+        h5: "text-sm leading-5",
+        # 16px/24px
+        h4: "text-normal leading-6",
+        # 20px/32px
+        h3: "text-xl leading-8",
+        # 26px/40px
+        h2: "text-h2 leading-10",
+        # 36px/48px
+        h1: "text-4xl leading-h1"
       },
       family: %{
         sans: "font-sans",
-        mono: "font-mono",
+        mono: "font-mono"
       },
       weight: %{
         normal: "font-normal",
         medium: "font-medium",
         semibold: "font-semibold",
-        bold: "font-bold",
+        bold: "font-bold"
       },
       tracking: %{
         normal: "tracking-normal",
-        wide: "tracking-wide",
+        wide: "tracking-wide"
       },
       align: %{
         left: "text-left",
         center: "text-center",
-        right: "text-right",
+        right: "text-right"
       },
       white_space: %{
         normal: "whitespace-normal",
         nowrap: "whitespace-nowrap",
         pre: "whitespace-pre",
         pre_line: "whitespace-pre-line",
-        pre_wrap: "whitespace-pre-wrap",
+        pre_wrap: "whitespace-pre-wrap"
       },
       word_break: %{
         normal: "break-normal",
         words: "break-words",
-        all: "break-all",
-      },
+        all: "break-all"
+      }
     }
   end
 
-  @spec font(:size | :family | :weight | :tracking | :align, String.t()) :: String.t()
+  @spec font(:size | :family | :weight | :tracking | :align, String.t()) ::
+          String.t()
   def font(category, key) when is_binary(key) do
     atom_key = String.to_existing_atom(key)
     font(category, atom_key)

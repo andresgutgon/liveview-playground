@@ -12,7 +12,13 @@ defmodule CoffeeWeb.Auth.UserForgotPasswordLiveTest do
       {:ok, lv, html} = live(conn, ~p"/auth/users/reset_password")
 
       assert html =~ "Forgot your password?"
-      assert has_element?(lv, ~s|a[href="#{~p"/auth/users/register"}"]|, "Register")
+
+      assert has_element?(
+               lv,
+               ~s|a[href="#{~p"/auth/users/register"}"]|,
+               "Register"
+             )
+
       assert has_element?(lv, ~s|a[href="#{~p"/auth/users/login"}"]|, "Log in")
     end
 
@@ -41,7 +47,8 @@ defmodule CoffeeWeb.Auth.UserForgotPasswordLiveTest do
         |> render_submit()
         |> follow_redirect(conn, "/")
 
-      assert Phoenix.Flash.get(conn.assigns.flash, :info) =~ "If your email is in our system"
+      assert Phoenix.Flash.get(conn.assigns.flash, :info) =~
+               "If your email is in our system"
 
       assert Repo.get_by!(Accounts.UserToken, user_id: user.id).context ==
                "reset_password"
@@ -52,11 +59,15 @@ defmodule CoffeeWeb.Auth.UserForgotPasswordLiveTest do
 
       {:ok, conn} =
         lv
-        |> form("#reset_password_form", user: %{"email" => "unknown@example.com"})
+        |> form("#reset_password_form",
+          user: %{"email" => "unknown@example.com"}
+        )
         |> render_submit()
         |> follow_redirect(conn, "/")
 
-      assert Phoenix.Flash.get(conn.assigns.flash, :info) =~ "If your email is in our system"
+      assert Phoenix.Flash.get(conn.assigns.flash, :info) =~
+               "If your email is in our system"
+
       assert Repo.all(Accounts.UserToken) == []
     end
   end

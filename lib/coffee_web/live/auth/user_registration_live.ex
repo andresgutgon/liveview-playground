@@ -11,7 +11,10 @@ defmodule CoffeeWeb.Auth.UserRegistrationLive do
         Register for an account
         <:subtitle>
           Already registered?
-          <.link navigate={~p"/auth/users/login"} class="font-semibold text-brand hover:underline">
+          <.link
+            navigate={~p"/auth/users/login"}
+            class="font-semibold text-brand hover:underline"
+          >
             Log in
           </.link>
           to your account now.
@@ -35,7 +38,9 @@ defmodule CoffeeWeb.Auth.UserRegistrationLive do
         <.input field={@form[:password]} type="password" label="Password" required />
 
         <:actions>
-          <.button phx-disable-with="Creating account..." class="w-full">Create an account</.button>
+          <.button phx-disable-with="Creating account..." class="w-full">
+            Create an account
+          </.button>
         </:actions>
       </.simple_form>
     </div>
@@ -63,10 +68,13 @@ defmodule CoffeeWeb.Auth.UserRegistrationLive do
           )
 
         changeset = Accounts.change_user_registration(user)
-        {:noreply, socket |> assign(trigger_submit: true) |> assign_form(changeset)}
+
+        {:noreply,
+         socket |> assign(trigger_submit: true) |> assign_form(changeset)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        {:noreply, socket |> assign(check_errors: true) |> assign_form(changeset)}
+        {:noreply,
+         socket |> assign(check_errors: true) |> assign_form(changeset)}
     end
   end
 
