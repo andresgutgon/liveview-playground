@@ -25,6 +25,7 @@ defmodule UI do
       import UI.Atoms.Text
       import UI.Atoms.Label
       import UI.Atoms.FormField
+      import UI.Atoms.Input
     end
   end
 end

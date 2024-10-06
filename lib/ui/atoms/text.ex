@@ -5,13 +5,12 @@ defmodule UI.Atoms.Text do
   import UI.Tokens.Color, only: [color: 2]
 
   @doc """
-  Render text component
+  Render text component in different sizes and styles
 
   ## Examples
+      alias UI.Text, as: Text
 
-      <UI.Text.text size="h1">
-        Text content
-      </UI.Text.text>
+      <Text.h1>Text content</Text.h1>
   """
 
   attr :tag, :string, default: "span"

@@ -4,15 +4,22 @@ defmodule UI.Atoms.Label do
 
   attr :for, :string, required: true
   attr :variant, :string, default: "default"
+  attr :class, :string, default: ""
   attr :rest, :global, default: %{}
 
   slot :inner_block, required: true
-  def label(assigns) do
+
+  def c(assigns) do
     ~H"""
     <Text.h5
       tag="label"
       color={if @variant == "destructive", do: "destructure", else: "foreground"}
-      class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      class={
+        classes([
+          "peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+          assigns[:class]
+        ])
+      }
       {@rest}
     >
       <%= render_slot(@inner_block) %>

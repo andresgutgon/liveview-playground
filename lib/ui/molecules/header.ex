@@ -7,7 +7,7 @@ defmodule UI.Molecules.Header do
   slot :subtitle
   slot :actions
 
-  def ui_header(assigns) do
+  def c(assigns) do
     ~H"""
     <header class={[
       @actions != [] && "flex items-center justify-between gap-6",

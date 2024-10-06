@@ -12,14 +12,16 @@ defmodule UI.Atoms.FormField do
       </UI.Atoms.FormControl.form_field>
   """
 
-  attr :field, Phoenix.HTML.FormField
+  attr :id, :string, required: true
   attr :label, :string, default: ""
+  attr :errors, :list, default: []
   attr :class, :string, default: ""
   attr :description, :string, default: ""
   attr :rest, :global, default: %{}
 
-  def form_field(assigns) do
-    error = assigns[:field].errors |> Enum.join(", ")
+  slot :inner_block, required: true
+  def c(assigns) do
+    error = assigns[:errors] |> Enum.join(", ")
     assigns = assign_aria_attributes(assigns) |> Map.put(:error, error)
 
     ~H"""
@@ -30,9 +32,9 @@ defmodule UI.Atoms.FormField do
       {@rest}
     >
       <%= if @label do %>
-        <Label.label for={assigns[:form_item_id]}>
+        <Label.c for={assigns[:form_item_id]}>
           <%= @label %>
-        </Label.label>
+        </Label.c>
       <% end %>
 
       <.form_control
@@ -63,7 +65,6 @@ defmodule UI.Atoms.FormField do
     """
   end
 
-  attr :field, Phoenix.HTML.FormField
   attr :form_item_id, :string, required: true
   attr :aria_describedby, :string, default: ""
   attr :aria_invalid, :string, default: "false"
@@ -74,7 +75,6 @@ defmodule UI.Atoms.FormField do
     ~H"""
     <div aria-describedby={@aria_describedby} aria-invalid={@aria_invalid}>
       <%= render_slot(@inner_block, %{
-        field: @field,
         aria_invalid: @aria_invalid,
         form_item_id: assigns[:form_item_id]
       }) %>
@@ -85,7 +85,7 @@ defmodule UI.Atoms.FormField do
   attr :error, :string, default: nil
 
   defp assign_aria_attributes(assigns) do
-    form_item_id = assigns[:field].id || unique_id()
+    form_item_id = assigns[:id]
     form_description_id = "#{form_item_id}-form-item-description"
     form_message_id = "#{form_item_id}-form-item-message"
 
@@ -101,9 +101,5 @@ defmodule UI.Atoms.FormField do
         else: "${form_description_id} ${form_message_id}"
       )
     )
-  end
-
-  defp unique_id do
-    :crypto.strong_rand_bytes(8) |> Base.encode64() |> binary_part(0, 8)
   end
 end
