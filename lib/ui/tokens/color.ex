@@ -1,18 +1,18 @@
 defmodule UI.Tokens.Color do
-  @type background :: :transparent | :backgroundCode
+  @type background :: :transparent | :foreground | :foreground_muted
   @type text_color ::
           :white
           | :primary
           | :foreground
           | :background
-          | :foregroundMuted
+          | :foreground_muted
           | :accent
           | :destructive
-          | :destructiveForeground
-          | :destructiveMutedForeground
-          | :accentForeground
-          | :secondaryForeground
-          | :warningMutedForeground
+          | :destructive_foreground
+          | :destructive_muted_foreground
+          | :accent_foreground
+          | :secondary_foreground
+          | :warning_muted_foreground
   @type border_color :: :transparent | :white | :border
 
   @spec colors() :: map
@@ -21,21 +21,21 @@ defmodule UI.Tokens.Color do
       background: %{
         transparent: "bg-transparent",
         foreground: "bg-foreground",
-        foreground_muted: "bg-muted-foreground",
+        foreground_muted: "bg-muted-foreground"
       },
       text_color: %{
         white: "text-white",
         primary: "text-primary",
         foreground: "text-foreground",
         background: "text-background",
-        foregroundMuted: "text-muted-foreground",
+        foreground_muted: "text-muted-foreground",
         accent: "text-accent",
         destructive: "text-destructive",
-        destructiveForeground: "text-destructive-foreground",
-        destructiveMutedForeground: "text-destructive-muted-foreground",
-        accentForeground: "text-accent-foreground",
-        secondaryForeground: "text-secondary-foreground",
-        warningMutedForeground: "text-warning-muted-foreground"
+        destructive_foreground: "text-destructive-foreground",
+        destructive_muted_foreground: "text-destructive-muted-foreground",
+        accent_foreground: "text-accent-foreground",
+        secondary_foreground: "text-secondary-foreground",
+        warning_muted_foreground: "text-warning-muted-foreground"
       },
       border_color: %{
         transparent: "border-transparent",

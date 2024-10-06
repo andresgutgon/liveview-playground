@@ -10,9 +10,9 @@ defmodule CoffeeWeb.Auth.UserLoginLive do
         <:subtitle>
           Don't have an account?
           <.link navigate={~p"/auth/users/register"} class="font-semibold text-brand hover:underline">
-            Sign up
+            create one
           </.link>
-          for an account now.
+          now
         </:subtitle>
       </.ui_header>
 

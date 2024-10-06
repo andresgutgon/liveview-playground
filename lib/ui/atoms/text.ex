@@ -34,10 +34,92 @@ defmodule UI.Atoms.Text do
   attr :monospace, :boolean, default: false
   attr :centered, :boolean, default: false
   attr :animate, :boolean, default: false
-  slot :inner_block, required: true
+  attr :class, :string, default: ""
   attr :rest, :global, default: %{}
 
-  def ui_text(assigns) do
+  slot :inner_block, required: true
+
+  def h1(assigns), do: text(assign(assigns, :size, "h1"))
+
+  def h1b(assigns),
+    do: text(assign(assigns, :size, "h1") |> Map.put(:weight, "bold"))
+
+  def h2(assigns), do: text(assign(assigns, :size, "h2"))
+
+  def h2b(assigns),
+    do: text(Map.put(assigns, :size, "h2") |> Map.put(:weight, "bold"))
+
+  def h3(assigns), do: text(Map.put(assigns, :size, "h3"))
+
+  def h3b(assigns),
+    do: text(Map.put(assigns, :size, "h3") |> Map.put(:weight, "bold"))
+
+  def h4(assigns), do: text(Map.put(assigns, :size, "h4"))
+
+  def h4m(assigns),
+    do: text(Map.put(assigns, :size, "h4") |> Map.put(:weight, "medium"))
+
+  def h4b(assigns),
+    do: text(Map.put(assigns, :size, "h4") |> Map.put(:weight, "semibold"))
+
+  def h5(assigns), do: text(Map.put(assigns, :size, "h5"))
+
+  def h5m(assigns),
+    do: text(Map.put(assigns, :size, "h5") |> Map.put(:weight, "medium"))
+
+  def h5b(assigns),
+    do: text(Map.put(assigns, :size, "h5") |> Map.put(:weight, "semibold"))
+
+  def h6(assigns), do: text(Map.put(assigns, :size, "h6"))
+
+  def h6m(assigns),
+    do: text(Map.put(assigns, :size, "h6") |> Map.put(:weight, "medium"))
+
+  def h6b(assigns),
+    do: text(Map.put(assigns, :size, "h6") |> Map.put(:weight, "semibold"))
+
+  def h6c(assigns),
+    do:
+      text(
+        Map.put(assigns, :size, "h6")
+        |> Map.put(:weight, "bold")
+        |> Map.put(:uppercase, true)
+      )
+
+  def h7(assigns),
+    do:
+      text(
+        Map.put(assigns, :size, "h7")
+        |> Map.put(:weight, "bold")
+        |> Map.put(:spacing, "wide")
+      )
+
+  def h7c(assigns),
+    do:
+      text(
+        Map.put(assigns, :size, "h7")
+        |> Map.put(:weight, "bold")
+        |> Map.put(:uppercase, true)
+        |> Map.put(:spacing, "wide")
+      )
+
+  def h8(assigns),
+    do:
+      text(
+        Map.put(assigns, :size, "h8")
+        |> Map.put(:weight, "bold")
+        |> Map.put(:spacing, "wide")
+      )
+
+  def mono(assigns),
+    do:
+      text(
+        Map.put(assigns, :family, "mono")
+        |> Map.put(:size, assigns.size || "h6")
+        |> Map.put(:weight, assigns.weight || "normal")
+      )
+
+  defp text(assigns) do
     assigns =
       assign(
         assigns,
@@ -52,18 +134,20 @@ defmodule UI.Atoms.Text do
           font(:white_space, assigns[:white_space]),
           font(:word_break, assigns[:word_break]),
           display(:display, assigns[:display]),
-          if(assigns[:animate], do: "animate-text-gradient", else: ""),
-          if(assigns[:capitalize], do: "capitalize", else: ""),
-          if(assigns[:uppercase], do: "uppercase", else: ""),
-          if(assigns[:ellipsis], do: "truncate", else: ""),
-          if(assigns[:user_select], do: "select-none", else: ""),
-          if(assigns[:no_wrap], do: "whitespace-nowrap", else: ""),
-          if(assigns[:underline], do: "underline", else: ""),
-          if(assigns[:line_through], do: "line-through", else: ""),
-          if(assigns[:monospace], do: "font-mono", else: "font-sans"),
-          if(assigns[:centered], do: "text-center", else: "")
+          "animate-text-gradient": assigns[:animate],
+          capitalize: assigns[:capitalize],
+          uppercase: assigns[:uppercase],
+          ellipsis: assigns[:ellipsis],
+          "user-select": assigns[:user_select],
+          "whitespace-nowrap": assigns[:no_wrap],
+          underline: assigns[:underline],
+          "line-through": assigns[:line_through],
+          "font-mono": assigns[:monospace],
+          "text-center": assigns[:centered]
         ])
       )
+      |> Map.put(:tag, assigns[:tag] || "span")
+      |> Map.put(:rest, assigns[:rest] || %{})
 
     ~H"""
     <.dynamic_tag name={@tag} class={@css_classes} {@rest}>

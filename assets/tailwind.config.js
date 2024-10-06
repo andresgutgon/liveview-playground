@@ -15,6 +15,7 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: { h2: "26px" },
       colors: require("./tailwind.colors.json"),
     },
   },

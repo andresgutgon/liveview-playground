@@ -1,6 +1,7 @@
 defmodule UI.Atoms.FormField do
   use UI, :component
-  import UI.Atoms.Text, only: [ui_text: 1]
+  alias UI.Atoms.Label, as: Label
+  alias UI.Atoms.Text, as: Text
 
   @doc """
   Render form control
@@ -11,14 +12,14 @@ defmodule UI.Atoms.FormField do
       </UI.Atoms.FormControl.form_field>
   """
 
+  attr :field, Phoenix.HTML.FormField
   attr :label, :string, default: ""
-  attr :errors, :list, default: []
   attr :class, :string, default: ""
   attr :description, :string, default: ""
   attr :rest, :global, default: %{}
 
   def form_field(assigns) do
-    error = assigns[:errors] |> List.first()
+    error = assigns[:field].errors |> Enum.join(", ")
     assigns = assign_aria_attributes(assigns) |> Map.put(:error, error)
 
     ~H"""
@@ -29,11 +30,9 @@ defmodule UI.Atoms.FormField do
       {@rest}
     >
       <%= if @label do %>
-        <div class="flex flex-row gap-1 items-center">
-          <label for={assigns[:form_item_id]} class={@label_class}>
-            <%= @label %>
-          </label>
-        </div>
+        <Label.label for={assigns[:form_item_id]}>
+          <%= @label %>
+        </Label.label>
       <% end %>
 
       <.form_control
@@ -46,24 +45,25 @@ defmodule UI.Atoms.FormField do
       </.form_control>
 
       <%= if @description do %>
-        <p
+        <Text.h6
+          tag="p"
           id={assigns[:form_description_id]}
-          class="text-[0.8rem] text-muted-foreground"
+          color="foreground_muted"
         >
           <%= @description %>
-        </p>
+        </Text.h6>
       <% end %>
 
       <%= if assigns[:error] do %>
-        <% # TODO: Use text atom %>
-        <p id={assigns[:form_message_id]} class="text-[0.8rem] font-medium text-destructive">
+        <Text.h7 tag="p" id={assigns[:form_message_id]} color="destructive">
           <%= assigns[:error] %>
-        </p>
+        </Text.h7>
       <% end %>
     </div>
     """
   end
 
+  attr :field, Phoenix.HTML.FormField
   attr :form_item_id, :string, required: true
   attr :aria_describedby, :string, default: ""
   attr :aria_invalid, :string, default: "false"
@@ -74,6 +74,7 @@ defmodule UI.Atoms.FormField do
     ~H"""
     <div aria-describedby={@aria_describedby} aria-invalid={@aria_invalid}>
       <%= render_slot(@inner_block, %{
+        field: @field,
         aria_invalid: @aria_invalid,
         form_item_id: assigns[:form_item_id]
       }) %>
@@ -84,10 +85,9 @@ defmodule UI.Atoms.FormField do
   attr :error, :string, default: nil
 
   defp assign_aria_attributes(assigns) do
-    id = unique_id()
-    form_item_id = "#{id}-form-item"
-    form_description_id = "#{id}-form-item-description"
-    form_message_id = "#{id}-form-item-message"
+    form_item_id = assigns[:field].id || unique_id()
+    form_description_id = "#{form_item_id}-form-item-description"
+    form_message_id = "#{form_item_id}-form-item-message"
 
     assigns
     |> Map.put(:form_item_id, form_item_id)
