@@ -1,7 +1,7 @@
 defmodule UI.Atoms.Text do
   use UI, :component
   import UI.Tokens.Font, only: [font: 2]
-  import UI.Tokens.Display, only: [display: 2]
+  import UI.Tokens.Display, only: [display: 1]
   import UI.Tokens.Color, only: [color: 2]
 
   @doc """
@@ -119,6 +119,7 @@ defmodule UI.Atoms.Text do
       )
 
   defp text(assigns) do
+    debug("REST: #{inspect(assigns[:rest])}")
     assigns =
       assign(
         assigns,
@@ -132,7 +133,8 @@ defmodule UI.Atoms.Text do
           font(:tracking, assigns[:tracking]),
           font(:white_space, assigns[:white_space]),
           font(:word_break, assigns[:word_break]),
-          display(:display, assigns[:display]),
+          display(assigns[:display]),
+          assigns[:class],
           "animate-text-gradient": assigns[:animate],
           capitalize: assigns[:capitalize],
           uppercase: assigns[:uppercase],
@@ -149,7 +151,7 @@ defmodule UI.Atoms.Text do
       |> Map.put(:rest, assigns[:rest] || %{})
 
     ~H"""
-    <.dynamic_tag name={@tag} class={@css_classes} {@rest}>
+    <.dynamic_tag name={@tag} class={@css_classes} for={assigns[:for]} {@rest}>
       <%= render_slot(@inner_block) %>
     </.dynamic_tag>
     """

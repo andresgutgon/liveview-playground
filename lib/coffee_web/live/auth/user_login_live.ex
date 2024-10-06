@@ -39,7 +39,14 @@ defmodule CoffeeWeb.Auth.UserLoginLive do
           placeholder="Your email"
           required
         />
-        <Input.c field={@form[:password]} type="password" label="Password" placeholder="*********" required />
+        <Input.c
+          field={@form[:password]}
+          type="password"
+          label="Password"
+          placeholder="*********"
+          description="Your password must be at least 8 characters long."
+          required
+        />
 
         <:actions>
           <.input

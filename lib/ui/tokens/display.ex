@@ -1,5 +1,3 @@
-require Logger
-
 defmodule UI.Tokens.Display do
   @type display :: :block | :inline | :inline_block
 
@@ -11,16 +9,16 @@ defmodule UI.Tokens.Display do
       inline_block: "inline-block"
     } end
 
-  @spec display(:display, String.t()) :: String.t()
-  def display(category, key) when is_binary(key) do
+  @spec display(String.t()) :: String.t()
+  def display(key) when is_binary(key) do
     atom_key = String.to_existing_atom(key)
-    display(category, atom_key)
+    display(atom_key)
   rescue
     ArgumentError -> raise "Invalid display key: #{key}"
   end
 
-  @spec display(:display, display) :: String.t()
-  def display(category, key) do
+  @spec display(Atom.t()) :: String.t()
+  def display(key) do
     properties()[key]
   end
 end

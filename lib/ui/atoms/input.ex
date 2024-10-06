@@ -135,15 +135,13 @@ defmodule UI.Atoms.Input do
 
   # All other inputs text, datetime-local, url, password, etc. are handled here...
   def c(assigns) do
-    debug("ASSIGNS: #{inspect(assigns)}")
-
     ~H"""
     <FormField.c
-      id={@id}
-      label={@label}
-      errors={@errors}
-      description={@description}
-      class={@form_field_class}
+      id={assigns.id}
+      label={assigns.label}
+      errors={assigns.errors}
+      description={assigns.description}
+      class={assigns[:form_field_class]}
     >
       <input
         type={@type}
