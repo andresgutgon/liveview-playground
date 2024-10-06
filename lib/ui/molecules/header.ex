@@ -13,8 +13,10 @@ defmodule UI.Molecules.Header do
       @actions != [] && "flex items-center justify-between gap-6",
       @class
     ]}>
-      <div>
-        <.ui_text size="h1" tag="h1"><%= render_slot(@inner_block) %></.ui_text>
+      <div class="flex flex-col gap-y-2">
+        <.ui_text size="h1" tag="h1" display="block">
+          <%= render_slot(@inner_block) %>
+        </.ui_text>
         <.ui_text :if={@subtitle != []} size="h5" tag="p">
           <%= render_slot(@subtitle) %>
         </.ui_text>
