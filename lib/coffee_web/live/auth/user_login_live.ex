@@ -38,6 +38,7 @@ defmodule CoffeeWeb.Auth.UserLoginLive do
           label="Email"
           placeholder="Your email"
           required
+          autocomplete="email"
         />
         <Input.c
           field={@form[:password]}
@@ -46,6 +47,7 @@ defmodule CoffeeWeb.Auth.UserLoginLive do
           placeholder="*********"
           description="Your password must be at least 8 characters long."
           required
+          autocomplete="current-password"
         />
 
         <div class="flex items-center justify-between gap-6">

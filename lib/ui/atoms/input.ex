@@ -38,7 +38,7 @@ defmodule UI.Atoms.Input do
     default: false,
     doc: "the multiple flag for select inputs"
 
-  attr :rest, :global, include: ~w(required), default: %{}
+  attr :rest, :global, include: ~w(required autocomplete), default: %{}
 
   def c(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
     errors = if Phoenix.Component.used_input?(field), do: field.errors, else: []
