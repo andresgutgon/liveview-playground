@@ -3,6 +3,7 @@ defmodule UI.Atoms.Label do
   use UI, :component
 
   attr :for, :string, required: true
+  attr :color, :string, default: "foreground"
   attr :variant, :string, default: "default"
   attr :class, :string, default: ""
 
@@ -14,7 +15,8 @@ defmodule UI.Atoms.Label do
     <Text.h5
       for={@for}
       tag="label"
-      color={if @variant == "destructive", do: "destructure", else: "foreground"}
+      color={if @variant == "destructive", do: "destructure", else: @color}
+
       class={
         classes([
           "cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-70",

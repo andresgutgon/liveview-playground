@@ -68,7 +68,8 @@ defmodule UI.Atoms.Input do
     >
       <Label.c
         for={@id}
-        class="flex items-center gap-4 text-sm leading-6 text-zinc-600"
+        color="foreground_muted"
+        class="flex items-center gap-x-2"
       >
         <input type="hidden" name={@name} value="false" disabled={@rest[:disabled]} />
         <input

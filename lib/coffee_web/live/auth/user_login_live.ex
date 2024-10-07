@@ -54,7 +54,7 @@ defmodule CoffeeWeb.Auth.UserLoginLive do
           <Input.c
             field={@form[:remember_me]}
             type="checkbox"
-            label="Keep me logged in"
+            label="Remember me"
           />
           <.link href={~p"/auth/users/reset_password"} class="flex-shrink-0 text-sm font-semibold">
             Forgot your password?
