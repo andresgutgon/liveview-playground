@@ -26,8 +26,6 @@ defmodule UI.Atoms.FormField do
       assign_aria_attributes(assigns)
       |> Map.put(:error, assigns[:errors] |> Enum.join(", "))
 
-    debug("ERRORS: #{assigns[:error]}")
-
     ~H"""
     <div
       class={classes(["space-y-2 w-full", assigns[:class]])}
@@ -35,9 +33,7 @@ defmodule UI.Atoms.FormField do
       aria-invalid={assigns[:aria_invalid]}
       {@rest}
     >
-      <%= if @label do %>
-        <Label.c for={@id}><%= @label %></Label.c>
-      <% end %>
+      <Label.c :if={@label != ""} for={@id}><%= @label %></Label.c>
 
       <.form_control
         id={@id}
@@ -49,7 +45,7 @@ defmodule UI.Atoms.FormField do
       </.form_control>
 
       <Text.h5
-        :if={@description != ""}
+        :if={String.trim(to_string(@description)) != ""}
         tag="p"
         id={assigns[:form_description_id]}
         color="foreground_muted"

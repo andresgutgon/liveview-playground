@@ -1,6 +1,7 @@
 defmodule CoffeeWeb.Auth.UserLoginLive do
   use CoffeeWeb, :live_view
   alias UI.Molecules.Header, as: Header
+  alias UI.Atoms.Form, as: Form
   alias UI.Atoms.Input, as: Input
 
   def mount(_params, _session, socket) do
@@ -11,7 +12,7 @@ defmodule CoffeeWeb.Auth.UserLoginLive do
 
   def render(assigns) do
     ~H"""
-    <div class="mx-auto max-w-sm">
+    <div class="mx-auto max-w-sm flex flex-col gap-y-6">
       <Header.c>
         Log in to account
         <:subtitle>
@@ -25,8 +26,7 @@ defmodule CoffeeWeb.Auth.UserLoginLive do
           now
         </:subtitle>
       </Header.c>
-
-      <.simple_form
+      <Form.c
         for={@form}
         id="login_form"
         action={~p"/auth/users/login"}
@@ -48,22 +48,22 @@ defmodule CoffeeWeb.Auth.UserLoginLive do
           required
         />
 
-        <:actions>
-          <.input
+        <div class="flex items-center justify-between gap-6">
+          <Input.c
             field={@form[:remember_me]}
             type="checkbox"
             label="Keep me logged in"
           />
-          <.link href={~p"/auth/users/reset_password"} class="text-sm font-semibold">
+          <.link href={~p"/auth/users/reset_password"} class="flex-shrink-0 text-sm font-semibold">
             Forgot your password?
           </.link>
-        </:actions>
-        <:actions>
+        </div>
+        <div class="mt-2 flex items-center justify-between gap-6">
           <.button phx-disable-with="Logging in..." class="w-full">
-            Log in <span aria-hidden="true">→</span>
+            Go to your account
           </.button>
-        </:actions>
-      </.simple_form>
+        </div>
+      </Form.c>
     </div>
     """
   end

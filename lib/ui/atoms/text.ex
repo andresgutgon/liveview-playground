@@ -119,8 +119,6 @@ defmodule UI.Atoms.Text do
       )
 
   defp text(assigns) do
-    debug("REST: #{inspect(assigns[:rest])}")
-
     assigns =
       assign(
         assigns,

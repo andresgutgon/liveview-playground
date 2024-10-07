@@ -23,6 +23,7 @@ defmodule UI do
       import UI.Atoms.Alert
       import UI.Atoms.Icon
       import UI.Atoms.Text
+      import UI.Atoms.Form
       import UI.Atoms.Label
       import UI.Atoms.FormField
       import UI.Atoms.Input
