@@ -1,5 +1,5 @@
 defmodule CoffeeWeb.Auth.UserLoginLive do
-  use CoffeeWeb, :live_view
+  use CoffeeWeb, :focus_live_view
   alias UI.Molecules.Header, as: Header
   alias UI.Atoms.Form, as: Form
   alias UI.Atoms.Input, as: Input
