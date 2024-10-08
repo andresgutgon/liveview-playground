@@ -72,7 +72,7 @@ defmodule CoffeeWeb.Auth.UserLoginLiveTest do
 
       {:ok, _login_live, login_html} =
         lv
-        |> element(~s|main a:fl-contains("Sign up")|)
+        |> element(~s|main a:fl-contains("create on")|)
         |> render_click()
         |> follow_redirect(conn, ~p"/auth/users/register")
 
