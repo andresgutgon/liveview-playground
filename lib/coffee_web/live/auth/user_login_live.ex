@@ -14,7 +14,7 @@ defmodule CoffeeWeb.Auth.UserLoginLive do
     ~H"""
     <div class="mx-auto max-w-sm flex flex-col gap-y-6">
       <Header.c>
-        Log in to account
+        Welcome back!
         <:subtitle>
           Don't have an account?
           <.link
@@ -27,9 +27,9 @@ defmodule CoffeeWeb.Auth.UserLoginLive do
         </:subtitle>
       </Header.c>
       <Form.c
-        for={@form}
         id="login_form"
         action={~p"/auth/users/login"}
+        for={@form}
         phx-update="ignore"
       >
         <Input.c
